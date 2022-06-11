@@ -81,6 +81,7 @@ kotlin {
             dependencies {
                 implementation(libs.coroutines.android)
                 api(libs.sqlDelight.android)
+                api(libs.sqlDelight.androidPagingExt)
                 val sqliteVersion = "2.2.0"
                 implementation("androidx.sqlite:sqlite:$sqliteVersion")
                 implementation("androidx.sqlite:sqlite-ktx:$sqliteVersion")

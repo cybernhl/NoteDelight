@@ -28,3 +28,9 @@ DELETE FROM note WHERE id = :noteId;
 
 deleteAll:
 DELETE FROM note;
+
+countNotes:
+SELECT count(*) FROM note;
+
+provideNotes:
+SELECT * FROM note LIMIT :limit OFFSET :offset;

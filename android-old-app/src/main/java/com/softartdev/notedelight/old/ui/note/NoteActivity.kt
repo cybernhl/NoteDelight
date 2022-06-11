@@ -7,6 +7,8 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.flowWithLifecycle
@@ -156,6 +158,14 @@ class NoteActivity : BaseActivity(R.layout.activity_note), Observer<NoteResult> 
         setTitle(android.R.string.dialog_alert_title)
         setMessage(message)
         setNeutralButton(android.R.string.cancel, null)
+        setNegativeButton(R.string.action_delete_note) { _, _ -> onNavBack() }
+        ContextCompat.getDrawable(this@NoteActivity, R.drawable.ic_delete_forever_white_24dp)
+            ?.let { drawable ->
+                DrawableCompat.setTint(
+                    drawable, getThemeColor(context, android.R.attr.textColorPrimary)
+                )
+                setNegativeButtonIcon(drawable)
+            }
         show(); Unit
     }
 
@@ -172,7 +182,7 @@ class NoteActivity : BaseActivity(R.layout.activity_note), Observer<NoteResult> 
         const val NOTE_ID = "note_id"
 
         fun getStartIntent(context: Context, noteId: Long): Intent =
-                Intent(context, NoteActivity::class.java)
-                        .putExtra(NOTE_ID, noteId)
+            Intent(context, NoteActivity::class.java)
+                .putExtra(NOTE_ID, noteId)
     }
 }

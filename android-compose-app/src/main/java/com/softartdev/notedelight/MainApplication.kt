@@ -2,6 +2,7 @@ package com.softartdev.notedelight
 
 import android.app.Application
 import com.softartdev.notedelight.shared.di.allModules
+import com.softartdev.notedelight.shared.di.pagingViewModelModule
 import com.softartdev.notedelight.shared.util.isInLeakCanaryAnalyzerProcess
 import com.softartdev.notedelight.shared.util.log.CrashlyticsAntilog
 import com.softartdev.notedelight.shared.util.log.NapierKoinLogger
@@ -20,7 +21,7 @@ class MainApplication : Application() {
         startKoin {
             logger(NapierKoinLogger(Level.DEBUG))
             androidContext(this@MainApplication)
-            modules(allModules)
+            modules(allModules + pagingViewModelModule)
         }
     }
 }

@@ -6,6 +6,7 @@ import com.softartdev.notedelight.shared.database.transactionResultWithContext
 import com.softartdev.notedelight.shared.date.createLocalDateTime
 import com.softartdev.notedelight.shared.db.Note
 import com.squareup.sqldelight.Query
+import com.squareup.sqldelight.Transacter
 import com.squareup.sqldelight.runtime.coroutines.asFlow
 import com.squareup.sqldelight.runtime.coroutines.mapToList
 import kotlinx.coroutines.channels.Channel
@@ -87,4 +88,7 @@ class NoteUseCase(
         return note.title.isEmpty() && note.text.isEmpty()
     }
 
+    fun countQuery(): Query<Long> = dbRepo.noteQueries.countNotes()
+    fun transacter(): Transacter = dbRepo.noteQueries
+    fun queryProvider(limit: Long, offset: Long): Query<Note> = dbRepo.noteQueries.provideNotes(limit, offset)
 }

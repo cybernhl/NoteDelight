@@ -1,5 +1,5 @@
 [versions]
-compileSdk = "31"
+compileSdk = "32"
 targetSdk = "31"
 oldMinSdk = "16"
 composeMinSdk = "21"
@@ -7,6 +7,8 @@ composeMinSdk = "21"
 kotlin = "1.6.10"
 coroutines = "1.6.1-native-mt"
 sqlDelight = "1.5.3"
+paging = "3.1.1"
+pagingCompose = "1.0.0-alpha15"
 decompose = "0.6.0"
 koin = "3.2.0-beta-1"
 kotlinx-datetime = "0.3.2"
@@ -27,9 +29,14 @@ coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", ve
 sqlDelight-gradlePlugin = { module = "com.squareup.sqldelight:gradle-plugin", version.ref = "sqlDelight" }
 sqlDelight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref = "sqlDelight" }
 sqlDelight-android = { module = "com.squareup.sqldelight:android-driver", version.ref = "sqlDelight" }
-sqlDelight-coroutinesExt = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
 sqlDelight-native = { module = "com.squareup.sqldelight:native-driver", version.ref = "sqlDelight" }
 sqlDelight-jvm = { module = "com.squareup.sqldelight:sqlite-driver", version.ref = "sqlDelight" }
+sqlDelight-coroutinesExt = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sqlDelight" }
+sqlDelight-androidPagingExt = { module = "com.squareup.sqldelight:android-paging3-extensions", version.ref = "sqlDelight" }
+
+paging-runtime = { module = "androidx.paging:paging-runtime-ktx", version.ref = "paging" }
+paging-common = { module = "androidx.paging:paging-common-ktx", version.ref = "paging" }
+paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingCompose" }
 
 decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
 decompose-extComposeJb = { module = "com.arkivanov.decompose:extensions-compose-jetbrains", version.ref = "decompose" }

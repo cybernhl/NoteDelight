@@ -13,6 +13,7 @@ import com.softartdev.notedelight.old.ui.title.EditTitleDialog
 import com.softartdev.notedelight.old.util.PreferencesHelper
 import com.softartdev.notedelight.shared.di.repoModule
 import com.softartdev.notedelight.shared.di.useCaseModule
+import com.softartdev.notedelight.shared.presentation.main.MainPagingViewModel
 import com.softartdev.notedelight.shared.presentation.main.MainViewModel
 import com.softartdev.notedelight.shared.presentation.note.NoteViewModel
 import com.softartdev.notedelight.shared.presentation.settings.SettingsViewModel
@@ -42,6 +43,7 @@ val viewModelAndroidModule = module {
     }
     scope<MainActivity> {
         viewModel { MainViewModel(get()) }
+        viewModel { MainPagingViewModel(get()) }
     }
     scope<NoteActivity> {
         viewModel { NoteViewModel(get()) }
