@@ -59,12 +59,12 @@ kotlin {
         }
         val commonMain by getting {
             dependencies {
-                implementation(libs.coroutines.core)
+                api(libs.coroutines.core)
                 implementation(libs.sqlDelight.coroutinesExt)
                 api(libs.kotlinx.datetime)
                 api(libs.napier)
                 api(libs.mokoResources)
-                implementation(libs.koin.core)
+                api(libs.koin.core)
             }
         }
         val commonTest by getting {
@@ -76,12 +76,18 @@ kotlin {
                 implementation(libs.mokoResources.test)
             }
         }
-        val androidMain by getting {
+        val jvmCommon by creating {
             dependsOn(commonMain)
+            dependencies {
+                implementation(libs.paging.common)
+                implementation(libs.sqlDelight.androidPagingExt)
+            }
+        }
+        val androidMain by getting {
+            dependsOn(jvmCommon)
             dependencies {
                 implementation(libs.coroutines.android)
                 api(libs.sqlDelight.android)
-                api(libs.sqlDelight.androidPagingExt)
                 val sqliteVersion = "2.2.0"
                 implementation("androidx.sqlite:sqlite:$sqliteVersion")
                 implementation("androidx.sqlite:sqlite-ktx:$sqliteVersion")
@@ -128,7 +134,7 @@ kotlin {
             iosSimulatorArm64Test.dependsOn(this)
         }
         val jvmMain by getting {
-            dependsOn(commonMain)
+            dependsOn(jvmCommon)
             dependencies {
                 implementation(libs.sqlDelight.jvm)
             }
