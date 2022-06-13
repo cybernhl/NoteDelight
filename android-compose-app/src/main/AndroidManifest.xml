@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         package="com.softartdev.notedelight">
+
+    <uses-sdk tools:overrideLibrary="androidx.compose.ui.tooling, androidx.compose.material, androidx.activity.compose, androidx.compose.ui.tooling.data, androidx.compose.material.ripple, androidx.compose.foundation, androidx.compose.animation, androidx.compose.material.icons, androidx.compose.foundation.layout, androidx.compose.animation.core, androidx.compose.ui.tooling.preview, androidx.compose.ui.text, androidx.compose.runtime.saveable, androidx.compose.ui.graphics, androidx.compose.ui.unit, androidx.compose.ui.geometry, androidx.compose.ui.util, com.softartdev.notedelight.shared.compose, org.koin.androidx.compose, com.softartdev.themepref, dev.icerock.moko.resources.compose, com.arkivanov.decompose.extensions.compose.jetbrains, androidx.compose.material.icons.extended, androidx.lifecycle.viewmodel.compose, androidx.compose.ui.test.manifest, androidx.core.splashscreen, com.google.firebase.firebase_analytics, com.google.firebase.measurement, com.google.android.gms.measurement.sdk, com.google.firebase.measurement_impl, com.google.android.gms.measurement.api, com.google.android.gms.measurement.sdk.api, com.google.android.gms.measurement_base" />
 
     <application
             android:name=".MainApplication"

@@ -1,6 +1,6 @@
 package com.softartdev.notedelight
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.softartdev.notedelight.shared.di.allModules
 import com.softartdev.notedelight.shared.util.isInLeakCanaryAnalyzerProcess
 import com.softartdev.notedelight.shared.util.log.CrashlyticsAntilog
@@ -11,7 +11,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 
-class MainApplication : Application() {
+class MainApplication : MultiDexApplication() {
 
     override fun onCreate() {
         super.onCreate()

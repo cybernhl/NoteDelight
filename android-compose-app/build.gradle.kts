@@ -16,10 +16,11 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
     defaultConfig {
         applicationId = "com.softartdev.noteroom"
-        minSdk = libs.versions.composeMinSdk.get().toInt()
+        minSdk = libs.versions.oldMinSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = 80
         versionName = "8.0"
+        multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments["clearPackageData"] = "true"
         vectorDrawables.useSupportLibrary = true
@@ -79,6 +80,7 @@ dependencies {
     debugImplementation(libs.leakCanary.android)
     debugImplementation(libs.leakCanary.android.process)
     implementation(libs.leakCanary.plumber.android)
+    implementation(libs.multidex)
     debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
     testImplementation(libs.junit)

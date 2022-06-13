@@ -84,7 +84,7 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.0-rc01")
     implementation("androidx.activity:activity-ktx:1.4.0")
     implementation("androidx.fragment:fragment-ktx:1.4.1")
-    implementation("androidx.multidex:multidex:2.0.1")
+    implementation(libs.multidex)
     val archVersion = "2.1.0"
     implementation("androidx.arch.core:core-common:$archVersion")
     implementation("androidx.arch.core:core-runtime:$archVersion")
