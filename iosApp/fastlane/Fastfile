@@ -63,14 +63,12 @@ platform :ios do
   desc "AppStore publish lane with deliver"
   lane :appstore_publish_deliver_lane do
     deliver(
-      app_version: get_version_number(target: "iosApp"),
       api_key_path: "fastlane/28F5CB4337.json",
       submit_for_review: true,
       automatic_release: true, # Automatically released once it's approved
       force: true, # Skip verification of HTML preview
       skip_metadata: true,
       skip_screenshots: true,
-      skip_app_version_update: true,
       precheck_include_in_app_purchases: false
     )
   end
