@@ -1,6 +1,7 @@
 package com.softartdev.notedelight.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,6 +17,7 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.PermMedia
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -27,6 +29,9 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
 import com.softartdev.notedelight.shared.presentation.files.FilesResult
 import com.softartdev.notedelight.shared.presentation.files.FilesViewModel
+import com.softartdev.notedelight.ui.dialog.showPermDialog
+import com.softartdev.themepref.DialogHolder
+import com.softartdev.themepref.LocalThemePrefs
 
 @Composable
 fun FileListScreen(
@@ -34,18 +39,31 @@ fun FileListScreen(
     filesViewModel: FilesViewModel
 ) {
     val fileListState: State<FilesResult> = filesViewModel.resultStateFlow.collectAsState()
+    val dialogHolder: DialogHolder = LocalThemePrefs.current.dialogHolder
     DisposableEffect(filesViewModel) {
         filesViewModel.updateFiles()
         onDispose(filesViewModel::onCleared)
     }
-    FileListScreen(fileListState, onBackClick, filesViewModel::onItemClicked)
+    Box {
+        FileListScreen(
+            fileListState = fileListState,
+            onBackClick = onBackClick,
+            onItemClicked = filesViewModel::onItemClicked,
+            onPermClicked = dialogHolder::showPermDialog
+        )
+        dialogHolder.showDialogIfNeed()
+    }
 }
+
+@Composable
+expect fun PermissionDialog(dismissCallback: () -> Unit)
 
 @Composable
 fun FileListScreen(
     fileListState: State<FilesResult>,
     onBackClick: () -> Unit = {},
-    onItemClicked: (text: String) -> Unit = {}
+    onItemClicked: (text: String) -> Unit = {},
+    onPermClicked: () -> Unit = {},
 ) = Scaffold(
     topBar = {
         TopAppBar(
@@ -58,6 +76,11 @@ fun FileListScreen(
                     )
                 }
             },
+            actions = {
+                IconButton(onClick = onPermClicked) {
+                    Icon(Icons.Default.PermMedia, contentDescription = "Permissions")
+                }
+            }
         )
     },
     content = {

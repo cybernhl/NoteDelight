@@ -56,20 +56,18 @@ abstract class FileRepo(private val fileSystem: FileSystem, zeroPath: Path) {
             currentFileNames = listOf(fileContent, readFile(file))
         } else {
             Napier.e("unknown file: $file")
-            _fileListFlow.value = _fileListFlow.value + "❌ $metadata" // FIXME
+            _fileListFlow.value = _fileListFlow.value + "❌ $file" // FIXME
+            return
         }
         val absolutePath = if (file.isAbsolute) file else fileSystem.canonicalize(file)
-        _fileListFlow.value = listOf("📂${absolutePath.toString()}", upFolder) + currentFileNames
+        _fileListFlow.value = listOf("📂$absolutePath", upFolder) + currentFileNames
     }
 
     private fun readFile(file: Path): String {
         val stringBuilder = StringBuilder()
         fileSystem.source(file).use { fileSource ->
             fileSource.buffer().use { bufferedFileSource ->
-                while (true) {
-                    val line = bufferedFileSource.readUtf8Line() ?: break
-                    stringBuilder.append(line)
-                }
+                stringBuilder.append(bufferedFileSource.readUtf8())
             }
         }
         return stringBuilder.toString()

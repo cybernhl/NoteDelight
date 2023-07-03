@@ -40,6 +40,7 @@ kotlin {
             dependencies {
                 implementation(libs.koin.androidx.compose)
                 implementation(project(":shared-jvm-util"))
+                implementation("com.google.accompanist:accompanist-permissions:0.30.1")
             }
         }
         val jvmMain by getting {

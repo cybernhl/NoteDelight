@@ -13,6 +13,7 @@ import com.softartdev.notedelight.shared.presentation.settings.security.change.C
 import com.softartdev.notedelight.shared.presentation.settings.security.confirm.ConfirmViewModel
 import com.softartdev.notedelight.shared.presentation.settings.security.enter.EnterViewModel
 import com.softartdev.notedelight.shared.presentation.title.EditTitleViewModel
+import com.softartdev.notedelight.ui.PermissionDialog
 import com.softartdev.notedelight.ui.dialog.security.ChangePasswordDialog
 import com.softartdev.notedelight.ui.dialog.security.ConfirmPasswordDialog
 import com.softartdev.notedelight.ui.dialog.security.EnterPasswordDialog
@@ -52,6 +53,10 @@ fun DialogHolder.showChangePassword(doAfterDismiss: (() -> Unit)? = null) = show
     val viewModel: ChangeViewModel = getViewModel()
     val dismissCallback = prepareDismissCallback(doAfter = doAfterDismiss)
     ChangePasswordDialog(dismissCallback, viewModel)
+}
+
+fun DialogHolder.showPermDialog() = showDialog {
+    PermissionDialog(::dismissDialog)
 }
 
 private fun DialogHolder.prepareDismissCallback(

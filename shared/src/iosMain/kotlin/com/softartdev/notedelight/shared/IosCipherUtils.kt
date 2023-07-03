@@ -24,7 +24,7 @@ object IosCipherUtils {
         var result = PlatformSQLiteState.DOES_NOT_EXIST
         val dbPath = getDatabasePath(dbName)
         val dbFileIsExist = nsFileManager.fileExistsAtPath(dbPath)
-        println("db file is exist = $dbFileIsExist")
+        println("db file is exist = $dbFileIsExist, dbPath = $dbPath")
         if (dbFileIsExist) memScoped {
             result = PlatformSQLiteState.ENCRYPTED
             val db = allocPointerTo<sqlite3>()
