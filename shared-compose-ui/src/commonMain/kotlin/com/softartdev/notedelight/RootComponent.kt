@@ -28,6 +28,7 @@ class RootComponent(
             is Configuration.Main -> mainList()
             is Configuration.Details -> noteDetail(configuration, context)
             is Configuration.Settings -> settings()
+            is Configuration.Files -> fileList()
         }
 
     private fun splash(): ContentChild = {
@@ -51,6 +52,7 @@ class RootComponent(
             onItemClicked = { id -> navigation.push(Configuration.Details(itemId = id)) },
             onSettingsClick = { navigation.push(Configuration.Settings) },
             navSignIn = { navigation.replaceCurrent(Configuration.SignIn) },
+            onFilesClick = { navigation.push(Configuration.Files) },
         )
     }
 
@@ -72,6 +74,13 @@ class RootComponent(
         SettingsScreen(
             onBackClick = navigation::pop,
             settingsViewModel = getViewModel(),
+        )
+    }
+
+    private fun fileList(): ContentChild = {
+        FileListScreen(
+            onBackClick = navigation::pop,
+            filesViewModel = getViewModel(),
         )
     }
 

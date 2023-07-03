@@ -16,7 +16,8 @@ class NoteDelightRootPreview : NoteDelightRoot {
                     mainViewModel = getViewModel(),
                     onItemClicked = {},
                     onSettingsClick = {},
-                    navSignIn = {}
+                    navSignIn = {},
+                    onFilesClick = {}
                 )
             }
         )

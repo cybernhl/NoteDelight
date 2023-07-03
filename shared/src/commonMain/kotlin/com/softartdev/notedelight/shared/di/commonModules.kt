@@ -3,6 +3,7 @@ package com.softartdev.notedelight.shared.di
 import com.softartdev.notedelight.shared.data.CryptUseCase
 import com.softartdev.notedelight.shared.data.NoteUseCase
 import com.softartdev.notedelight.shared.database.DatabaseRepo
+import com.softartdev.notedelight.shared.presentation.files.FilesViewModel
 import com.softartdev.notedelight.shared.presentation.main.MainViewModel
 import com.softartdev.notedelight.shared.presentation.note.NoteViewModel
 import com.softartdev.notedelight.shared.presentation.settings.SettingsViewModel
@@ -40,4 +41,5 @@ val viewModelModule: Module = module {
     viewModelFactory { EnterViewModel(get()) }
     viewModelFactory { ConfirmViewModel(get()) }
     viewModelFactory { ChangeViewModel(get()) }
+    viewModelFactory { FilesViewModel(get()) }
 }

@@ -1,11 +1,23 @@
 package com.softartdev.notedelight.ui
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.material.*
+import androidx.compose.material.ExtendedFloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Folder
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -21,14 +33,15 @@ fun MainScreen(
     mainViewModel: MainViewModel,
     onItemClicked: (id: Long) -> Unit,
     onSettingsClick: () -> Unit,
-    navSignIn: () -> Unit
+    navSignIn: () -> Unit,
+    onFilesClick: () -> Unit
 ) {
     val noteListState: State<NoteListResult> = mainViewModel.resultStateFlow.collectAsState()
     DisposableEffect(mainViewModel) {
         mainViewModel.updateNotes()
         onDispose(mainViewModel::onCleared)
     }
-    MainScreen(noteListState, onItemClicked, onSettingsClick, navSignIn)
+    MainScreen(noteListState, onItemClicked, onSettingsClick, navSignIn, onFilesClick)
 }
 
 @Composable
@@ -37,6 +50,7 @@ fun MainScreen(
     onItemClicked: (id: Long) -> Unit = {},
     onSettingsClick: () -> Unit = {},
     navSignIn: () -> Unit = {},
+    onFilesClick: () -> Unit = {}
 ) = Scaffold(
     topBar = {
         TopAppBar(
@@ -44,6 +58,9 @@ fun MainScreen(
             actions = {
                 IconButton(onClick = onSettingsClick) {
                     Icon(Icons.Default.Settings, contentDescription = stringResource(MR.strings.settings))
+                }
+                IconButton(onClick = onFilesClick) {
+                    Icon(Icons.Default.Folder, contentDescription = "Open files")
                 }
             })
     }, content = {

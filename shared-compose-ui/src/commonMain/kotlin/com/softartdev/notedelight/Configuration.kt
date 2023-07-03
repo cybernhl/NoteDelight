@@ -19,4 +19,7 @@ sealed class Configuration : Parcelable {
 
     @Parcelize
     object Settings : Configuration()
+
+    @Parcelize
+    object Files : Configuration()
 }

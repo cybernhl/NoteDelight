@@ -67,6 +67,7 @@ kotlin {
                 api(libs.mokoResources)
                 implementation(libs.koin.core)
                 api(libs.material.theme.prefs)
+                implementation("com.squareup.okio:okio:3.3.0")
             }
         }
         val commonTest by getting {

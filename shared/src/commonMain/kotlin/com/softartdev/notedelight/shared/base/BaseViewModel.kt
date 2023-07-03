@@ -48,6 +48,23 @@ abstract class BaseViewModel<T> : KmmViewModel() {
         }.start()
     }
 
+    fun launchAction(
+        useIdling: Boolean = true,
+        blockAction: () -> Unit
+    ) {
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                if (useIdling) IdlingResource.increment()
+                blockAction.invoke()
+            } catch (e: Throwable) {
+                Napier.e("❌", e)
+                onResult(errorResult(e))
+            } finally {
+                if (useIdling) IdlingResource.decrement()
+            }
+        }.start()
+    }
+
     private suspend inline fun onResult(result: T) = withContext(Dispatchers.Main) {
         _resultStateFlow.value = result
     }
