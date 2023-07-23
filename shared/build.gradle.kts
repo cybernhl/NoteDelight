@@ -97,7 +97,6 @@ kotlin {
             dependencies {
                 implementation(kotlin("test"))
                 implementation(kotlin("test-junit"))
-                implementation(project(":shared-android-test-util"))
                 implementation(libs.junit)
                 implementation(libs.coroutines.test)
                 implementation(libs.bundles.mockito)

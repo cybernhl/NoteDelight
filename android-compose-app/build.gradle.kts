@@ -81,7 +81,6 @@ dependencies {
     implementation(libs.leakCanary.plumber.android)
     coreLibraryDesugaring(libs.desugar)
     testImplementation(libs.junit)
-    androidTestImplementation(project(":shared-android-test-util"))
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestUtil(libs.androidx.test.orchestrator)
